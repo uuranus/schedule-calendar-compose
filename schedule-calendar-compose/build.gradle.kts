@@ -35,7 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget =  "17"
+        jvmTarget = "17"
     }
 }
 
@@ -61,3 +61,5 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)
 }
+
+group = "com.github.uuranus"
