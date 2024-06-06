@@ -10,7 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.uuranus.schedule.calendar.compose.ui.theme.Blue
+import com.uuranus.schedule.calendar.compose.ui.theme.Green
+import com.uuranus.schedule.calendar.compose.ui.theme.Orange
+import com.uuranus.schedule.calendar.compose.ui.theme.Purple
+import com.uuranus.schedule.calendar.compose.ui.theme.Red
 import com.uuranus.schedule.calendar.compose.ui.theme.SchedulecalendarcomposeTheme
+import com.uuranus.schedule.calendar.compose.ui.theme.Yellow
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Calendar()
                 }
             }
         }
@@ -30,7 +36,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Calendar() {
     val date1 = ScheduleDate.create(2024, 6, 1)
     val date2 = ScheduleDate.create(2024, 6, 12)
     val date3 = ScheduleDate.create(2024, 6, 3)
@@ -41,8 +47,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     val info1 = ScheduleInfo(
         false, listOf(
             ScheduleData(
-                1, "Schedule Info 1",
-                Color.Yellow,
+                "Schedule Info 1",
+                Purple,
                 "Schedule Info 1",
             )
         )
@@ -50,8 +56,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     val info2 = ScheduleInfo(
         false, listOf(
             ScheduleData(
-                2, "Schedule Info 2",
-                Color.Yellow,
+                "Schedule Info 2",
+                Blue,
                 "Schedule Info 2",
             )
         )
@@ -59,26 +65,46 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     val info3 = ScheduleInfo(
         false, listOf(
             ScheduleData(
-                3, "Schedule Info 3",
-                Color.Yellow,
+                "Schedule Info 3",
+                Red,
                 "Schedule Info 3",
             )
         )
     )
     val info4 = ScheduleInfo(
-        false, listOf(
+        true, listOf(
             ScheduleData(
-                4, "Schedule Info 4",
-                Color.Yellow,
+                "Schedule Info 4",
+                Orange,
                 "Schedule Info 4",
             )
         )
     )
     val info5 = ScheduleInfo(
-        false, listOf(
+        true, listOf(
             ScheduleData(
-                5, "Schedule Info 5",
-                Color.Yellow,
+                "Schedule Info 5",
+                Yellow,
+                "Schedule Info 5",
+            ),
+            ScheduleData(
+                "Schedule Info 5",
+                Orange,
+                "Schedule Info 5",
+            ),
+            ScheduleData(
+                "Schedule Info 5",
+                Green,
+                "Schedule Info 5",
+            ),
+            ScheduleData(
+                "Schedule Info 5",
+                Blue,
+                "Schedule Info 5",
+            ),
+            ScheduleData(
+                "Schedule Info 5",
+                Purple,
                 "Schedule Info 5",
             )
         )
@@ -98,16 +124,13 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         isMondayFirst = false,
         initialDate = ScheduleDate.create(2024, 6, 2),
         schedules = schedules,
-        onDayClick = {},
+        onDayClick = {
+
+        },
         onPageChanged = {
 
         },
-        calendarColors = ScheduleCalendarColors(
-            saturdayColor = Color.Blue,
-            sundayColor = Color.Red,
-        ),
-        calendarFormat = ScheduleCalendarFormat().copy(
-            monthHeaderFormat = "%04d년 %2d월",
+        calendarFormat = ScheduleCalendarDefaults.format.copy(
             dayOfWeeks = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
         )
 

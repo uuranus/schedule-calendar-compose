@@ -23,9 +23,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,7 +43,7 @@ fun <T> ScheduleCalendar(
     onDayClick: (ScheduleDate) -> Unit,
     onPageChanged: (ScheduleDate) -> Unit,
     calendarTypography: ScheduleCalendarTypography = ScheduleCalendarDefaults.typography,
-    calendarColors: ScheduleCalendarColors = ScheduleCalendarDefaults.colors,
+    calendarColors: ScheduleCalendarColors = ScheduleCalendarDefaults.colors(),
     calendarFormat: ScheduleCalendarFormat = ScheduleCalendarDefaults.format,
 ) {
 
@@ -246,6 +243,9 @@ internal fun ScheduleCalendarWeekDay(
         )
     }
 
+    val dividerColor =
+        ScheduleCalendarDefaults.colors().horizontalDividerColor
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -255,7 +255,7 @@ internal fun ScheduleCalendarWeekDay(
                 val y = size.height - strokeWidth / 2
 
                 drawLine(
-                    ScheduleCalendarDefaults.colors.horizontalDividerColor,
+                    dividerColor,
                     Offset(0f, y),
                     Offset(size.width, y),
                     strokeWidth
@@ -284,6 +284,9 @@ internal fun <T> ScheduleCalendarDate(
     dateColor: Color,
 ) {
 
+    val dividerColor =
+        ScheduleCalendarDefaults.colors().horizontalDividerColor
+
     Column(
         modifier = modifier
             .height(100.dp)
@@ -293,7 +296,7 @@ internal fun <T> ScheduleCalendarDate(
                 val y = size.height - strokeWidth / 2
 
                 drawLine(
-                    ScheduleCalendarDefaults.colors.horizontalDividerColor,
+                    dividerColor,
                     Offset(0f, y),
                     Offset(size.width, y),
                     strokeWidth
@@ -312,6 +315,7 @@ internal fun <T> ScheduleCalendarDate(
         )
         DateContent(
             Modifier.fillMaxHeight(), scheduleInfo.schedules,
+            calendarColors = calendarColors,
             calendarTypography = calendarTypography
         )
     }
@@ -324,7 +328,8 @@ internal fun EmptyScheduleCalendarDate(
     dateColor: Color,
     calendarTypography: ScheduleCalendarTypography,
 ) {
-
+    val dividerColor =
+        ScheduleCalendarDefaults.colors().horizontalDividerColor
     Column(
         modifier = modifier
             .height(100.dp)
@@ -334,7 +339,7 @@ internal fun EmptyScheduleCalendarDate(
                 val y = size.height - strokeWidth / 2
 
                 drawLine(
-                    ScheduleCalendarDefaults.colors.horizontalDividerColor,
+                    dividerColor,
                     Offset(0f, y),
                     Offset(size.width, y),
                     strokeWidth
@@ -381,7 +386,7 @@ internal fun DateHeader(
                 modifier = Modifier
                     .size(20.dp)
                     .background(
-                        color = calendarColors.todayAlarmColor,
+                        color = calendarColors.todayIndicatorColor,
                         shape = CircleShape
                     )
                     .align(Alignment.TopCenter),
@@ -390,7 +395,7 @@ internal fun DateHeader(
                 Text(
                     text = date.date.toString(),
                     style = calendarTypography.date,
-                    color = calendarColors.todayAlarmTextColor
+                    color = calendarColors.todayIndicatorTextColor
                 )
             }
         } else {
@@ -440,6 +445,7 @@ internal fun NonCurrentMonthDateHeader(
 internal fun <T> DateContent(
     modifier: Modifier,
     schedules: List<ScheduleData<T>>,
+    calendarColors: ScheduleCalendarColors,
     calendarTypography: ScheduleCalendarTypography,
 ) {
     LazyColumn(
@@ -452,11 +458,12 @@ internal fun <T> DateContent(
                         .fillMaxSize()
                         .padding(vertical = 1.dp),
                     data = schedules[index],
+                    calendarColors = calendarColors,
                     calendarTypography = calendarTypography,
                 )
             } else if (index == 4) {
                 ScheduleCalendarMoreListItem(
-                    Modifier.fillMaxWidth(), 10 - index,
+                    Modifier.fillMaxWidth(), schedules.size - index,
                     calendarTypography = calendarTypography,
                 )
             }

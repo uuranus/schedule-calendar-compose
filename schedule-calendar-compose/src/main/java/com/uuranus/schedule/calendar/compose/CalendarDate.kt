@@ -12,7 +12,7 @@ import java.util.Calendar
 internal fun rememberCurrentDate(initialDate: ScheduleDate): MutableState<ScheduleDate> {
     return rememberSaveable(stateSaver = listSaver(
         save = { listOf(it.year, it.month, it.date) },
-        restore = { ScheduleDate.create(it[0] as Int, it[1] as Int, it[2] as Int) }
+        restore = { ScheduleDate.create(it[0], it[1], it[2]) }
     )) {
         mutableStateOf(initialDate)
     }
@@ -56,7 +56,6 @@ internal data class MonthInfo(
     val firstDayOfWeek: Int,
     val nextDayOfWeek: Int,
 )
-
 
 class ScheduleDate private constructor(
     val year: Int,

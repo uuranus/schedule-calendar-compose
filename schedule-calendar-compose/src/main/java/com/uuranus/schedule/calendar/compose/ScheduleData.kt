@@ -8,7 +8,6 @@ data class ScheduleInfo<T>(
 )
 
 data class ScheduleData<T>(
-    val scheduleId: Int,
     val title: String,
     val color: Color,
     val detail: T,
