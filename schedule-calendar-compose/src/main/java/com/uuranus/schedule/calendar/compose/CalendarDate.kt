@@ -1,25 +1,55 @@
 package com.uuranus.schedule.calendar.compose
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.listSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import java.util.Calendar
 
 @Composable
-internal fun rememberMonthInfo(currentDate: ScheduleDate): MonthInfo {
-    return remember(currentDate) {
+internal fun rememberCurrentDate(initialDate: ScheduleDate): MutableState<ScheduleDate> {
+    return rememberSaveable(stateSaver = listSaver(
+        save = { listOf(it.year, it.month, it.date) },
+        restore = { ScheduleDate.create(it[0] as Int, it[1] as Int, it[2] as Int) }
+    )) {
+        mutableStateOf(initialDate)
+    }
+}
+
+@Composable
+internal fun rememberMonthInfo(currentDate: ScheduleDate, isMondayFirst: Boolean): MonthInfo {
+    return rememberSaveable(saver = MonthInfoSaver) {
         MonthInfo(
             numberOfDays = getNumberOfDaysInMonth(currentDate.year, currentDate.month),
             firstDayOfWeek = getFirstDayOfWeek(
                 getFirstDayOfMonth(
                     currentDate.year,
                     currentDate.month
-                )
+                ),
+                isMondayFirst = isMondayFirst
             ),
-            nextDayOfWeek = getNextDayOfWeek(currentDate.year, currentDate.month)
+            nextDayOfWeek = getNextDayOfWeek(
+                currentDate.year,
+                currentDate.month,
+                isMondayFirst = isMondayFirst
+            )
         )
     }
 }
 
+internal val MonthInfoSaver: Saver<MonthInfo, Any> = Saver(
+    save = { listOf(it.numberOfDays, it.firstDayOfWeek, it.nextDayOfWeek) },
+    restore = {
+        val list = it as List<*>
+        MonthInfo(
+            numberOfDays = list[0] as Int,
+            firstDayOfWeek = list[1] as Int,
+            nextDayOfWeek = list[2] as Int
+        )
+    }
+)
 
 internal data class MonthInfo(
     val numberOfDays: Int,
@@ -102,4 +132,3 @@ class ScheduleDate private constructor(
     }
 
 }
-

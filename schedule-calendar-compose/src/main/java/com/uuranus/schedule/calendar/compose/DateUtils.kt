@@ -23,13 +23,14 @@ internal fun getFirstDayOfMonth(year: Int, month: Int): Calendar {
     return calendar
 }
 
-internal fun getFirstDayOfWeek(calendar: Calendar): Int {
-    return (calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY + 7) % 7
+internal fun getFirstDayOfWeek(calendar: Calendar, isMondayFirst: Boolean): Int {
+    return if (isMondayFirst) (calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY + 7) % 7
+    else (calendar.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY + 7) % 7
 }
 
-internal fun getNextDayOfWeek(year: Int, month: Int): Int {
+internal fun getNextDayOfWeek(year: Int, month: Int, isMondayFirst: Boolean): Int {
     val moreDate = (getNumberOfDaysInMonth(year, month) + getFirstDayOfWeek(
-        getFirstDayOfMonth(year, month)
+        getFirstDayOfMonth(year, month), isMondayFirst
     )) % 7
 
     if (moreDate != 0) return 7 - moreDate

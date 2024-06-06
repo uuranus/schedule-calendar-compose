@@ -25,6 +25,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,9 +50,9 @@ fun <T> ScheduleCalendar(
     calendarFormat: ScheduleCalendarFormat = ScheduleCalendarDefaults.format,
 ) {
 
-    var currentDate by remember { mutableStateOf(initialDate) }
+    var currentDate by rememberCurrentDate(initialDate)
 
-    val monthInfo = rememberMonthInfo(currentDate)
+    val monthInfo = rememberMonthInfo(currentDate, isMondayFirst)
 
     val pagerState: PagerState =
         rememberPagerState(pageCount = { Int.MAX_VALUE }, initialPage = Int.MAX_VALUE / 2)
@@ -139,6 +140,7 @@ internal fun <T> ScheduleCalendarMonth(
     LazyVerticalGrid(columns = GridCells.Fixed(7)) {
         items(7) {
             ScheduleCalendarWeekDay(
+                isMondayFirst = isMondayFirst,
                 weekNum = it,
                 weekDayColor = when (it) {
                     satIndex -> {
@@ -210,7 +212,7 @@ internal fun <T> ScheduleCalendarMonth(
             EmptyScheduleCalendarDate(
                 modifier = Modifier,
                 date = date,
-                dateColor = when ((monthInfo.firstDayOfWeek + monthInfo.numberOfDays + nextIndex ) % 7) {
+                dateColor = when ((monthInfo.firstDayOfWeek + monthInfo.numberOfDays + nextIndex) % 7) {
                     satIndex -> {
                         calendarColors.saturdayColor
                     }
@@ -231,11 +233,18 @@ internal fun <T> ScheduleCalendarMonth(
 
 @Composable
 internal fun ScheduleCalendarWeekDay(
+    isMondayFirst: Boolean,
     weekNum: Int,
     weekDayColor: Color,
     calendarTypography: ScheduleCalendarTypography,
     calendarFormat: ScheduleCalendarFormat,
 ) {
+    val weekDays = if (isMondayFirst) calendarFormat.dayOfWeeks
+    else {
+        listOf(calendarFormat.dayOfWeeks.last()).plus(
+            calendarFormat.dayOfWeeks.subList(0, calendarFormat.dayOfWeeks.size - 1)
+        )
+    }
 
     Box(
         modifier = Modifier
@@ -255,7 +264,7 @@ internal fun ScheduleCalendarWeekDay(
         contentAlignment = Alignment.Center
     ) {
         Text(
-            calendarFormat.dayOfWeeks[weekNum],
+            weekDays[weekNum],
             style = calendarTypography.dayOfWeeks,
             color = weekDayColor
         )

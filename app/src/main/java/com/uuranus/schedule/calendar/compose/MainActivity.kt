@@ -95,7 +95,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
     ScheduleCalendar(
         modifier = Modifier,
-        isMondayFirst = true,
+        isMondayFirst = false,
         initialDate = ScheduleDate.create(2024, 6, 2),
         schedules = schedules,
         onDayClick = {},
