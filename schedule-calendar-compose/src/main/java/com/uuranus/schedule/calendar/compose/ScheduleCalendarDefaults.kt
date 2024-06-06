@@ -105,6 +105,6 @@ object ScheduleCalendarDefaults {
 
     val format = ScheduleCalendarFormat(
         monthHeaderFormat = "%04d년 %d월",
-        dayOfWeeks = getSystemWeeks(),
+        dayOfWeeks = getSystemDayOfWeekNames(),
     )
 }

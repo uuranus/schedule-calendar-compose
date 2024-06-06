@@ -8,8 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import com.uuranus.schedule.calendar.compose.ui.theme.Blue
 import com.uuranus.schedule.calendar.compose.ui.theme.Green
 import com.uuranus.schedule.calendar.compose.ui.theme.Orange
@@ -23,7 +21,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SchedulecalendarcomposeTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -47,7 +44,7 @@ fun Calendar() {
     val info1 = ScheduleInfo(
         false, listOf(
             ScheduleData(
-                "Schedule Info 1",
+                "schedule1",
                 Purple,
                 "Schedule Info 1",
             )
@@ -56,7 +53,7 @@ fun Calendar() {
     val info2 = ScheduleInfo(
         false, listOf(
             ScheduleData(
-                "Schedule Info 2",
+                "schedule2",
                 Blue,
                 "Schedule Info 2",
             )
@@ -65,7 +62,7 @@ fun Calendar() {
     val info3 = ScheduleInfo(
         false, listOf(
             ScheduleData(
-                "Schedule Info 3",
+                "schedule3",
                 Red,
                 "Schedule Info 3",
             )
@@ -74,7 +71,7 @@ fun Calendar() {
     val info4 = ScheduleInfo(
         true, listOf(
             ScheduleData(
-                "Schedule Info 4",
+                "schedule4",
                 Orange,
                 "Schedule Info 4",
             )
@@ -83,29 +80,29 @@ fun Calendar() {
     val info5 = ScheduleInfo(
         true, listOf(
             ScheduleData(
-                "Schedule Info 5",
+                "schedule5",
                 Yellow,
                 "Schedule Info 5",
             ),
             ScheduleData(
-                "Schedule Info 5",
+                "schedule6",
                 Orange,
-                "Schedule Info 5",
+                "Schedule Info 6",
             ),
             ScheduleData(
-                "Schedule Info 5",
+                "schedule7",
                 Green,
-                "Schedule Info 5",
+                "Schedule Info 7",
             ),
             ScheduleData(
-                "Schedule Info 5",
+                "schedule8",
                 Blue,
-                "Schedule Info 5",
+                "Schedule Info 8",
             ),
             ScheduleData(
-                "Schedule Info 5",
+                "schedule9",
                 Purple,
-                "Schedule Info 5",
+                "Schedule Info 9",
             )
         )
     )
@@ -125,14 +122,8 @@ fun Calendar() {
         initialDate = ScheduleDate.create(2024, 6, 2),
         schedules = schedules,
         onDayClick = {
-
         },
         onPageChanged = {
-
         },
-        calendarFormat = ScheduleCalendarDefaults.format.copy(
-            dayOfWeeks = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-        )
-
     )
 }

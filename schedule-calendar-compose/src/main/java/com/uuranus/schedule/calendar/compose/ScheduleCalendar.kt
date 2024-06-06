@@ -36,12 +36,12 @@ internal val today = ScheduleDate.create(Calendar.getInstance())
 
 @Composable
 fun <T> ScheduleCalendar(
-    modifier: Modifier,
-    initialDate: ScheduleDate,
-    isMondayFirst: Boolean,
+    modifier: Modifier = Modifier,
+    initialDate: ScheduleDate = today,
+    isMondayFirst: Boolean = true,
     schedules: Map<ScheduleDate, ScheduleInfo<T>>,
-    onDayClick: (ScheduleDate) -> Unit,
-    onPageChanged: (ScheduleDate) -> Unit,
+    onDayClick: (ScheduleDate) -> Unit = {},
+    onPageChanged: (ScheduleDate) -> Unit = {},
     calendarTypography: ScheduleCalendarTypography = ScheduleCalendarDefaults.typography,
     calendarColors: ScheduleCalendarColors = ScheduleCalendarDefaults.colors(),
     calendarFormat: ScheduleCalendarFormat = ScheduleCalendarDefaults.format,
@@ -68,7 +68,7 @@ fun <T> ScheduleCalendar(
             }
         }
 
-        onPageChanged(currentDate)
+        onPageChanged(currentDate.setDate(1))
     }
 
     HorizontalPager(

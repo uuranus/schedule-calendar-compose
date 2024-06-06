@@ -9,18 +9,18 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import java.util.Calendar
 
 @Composable
-internal fun rememberCurrentDate(initialDate: ScheduleDate): MutableState<ScheduleDate> {
+internal fun rememberCurrentDate(currentDate: ScheduleDate): MutableState<ScheduleDate> {
     return rememberSaveable(stateSaver = listSaver(
         save = { listOf(it.year, it.month, it.date) },
         restore = { ScheduleDate.create(it[0], it[1], it[2]) }
     )) {
-        mutableStateOf(initialDate)
+        mutableStateOf(currentDate)
     }
 }
 
 @Composable
 internal fun rememberMonthInfo(currentDate: ScheduleDate, isMondayFirst: Boolean): MonthInfo {
-    return rememberSaveable(saver = MonthInfoSaver) {
+    val monthInfo = rememberSaveable(inputs = arrayOf(currentDate), saver = MonthInfoSaver) {
         MonthInfo(
             numberOfDays = getNumberOfDaysInMonth(currentDate.year, currentDate.month),
             firstDayOfWeek = getFirstDayOfWeek(
@@ -37,6 +37,7 @@ internal fun rememberMonthInfo(currentDate: ScheduleDate, isMondayFirst: Boolean
             )
         )
     }
+    return monthInfo
 }
 
 internal val MonthInfoSaver: Saver<MonthInfo, Any> = Saver(
