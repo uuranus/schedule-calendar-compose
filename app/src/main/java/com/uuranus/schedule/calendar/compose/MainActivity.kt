@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.uuranus.schedule.calendar.compose.ui.theme.Blue
 import com.uuranus.schedule.calendar.compose.ui.theme.Green
 import com.uuranus.schedule.calendar.compose.ui.theme.Orange
@@ -118,12 +119,12 @@ fun Calendar() {
 
     ScheduleCalendar(
         modifier = Modifier,
-        isMondayFirst = false,
+        isMondayFirst = true,
         initialDate = ScheduleDate.create(2024, 6, 2),
         schedules = schedules,
         onDayClick = {
         },
         onPageChanged = {
-        },
+        }
     )
 }

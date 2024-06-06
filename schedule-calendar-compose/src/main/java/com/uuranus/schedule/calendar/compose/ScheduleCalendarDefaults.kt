@@ -57,7 +57,7 @@ object ScheduleCalendarDefaults {
     }
 
     @Composable
-    private fun defaultLightColors() = ScheduleCalendarColors(
+    fun defaultLightColors() = ScheduleCalendarColors(
         monthHeaderColor = Black,
         horizontalDividerColor = LightGray,
         dayOfWeeks = Black,
@@ -71,7 +71,7 @@ object ScheduleCalendarDefaults {
     )
 
     @Composable
-    private fun defaultDarkColors() = ScheduleCalendarColors(
+    fun defaultDarkColors() = ScheduleCalendarColors(
         monthHeaderColor = White,
         horizontalDividerColor = DarkGray,
         dayOfWeeks = White,
