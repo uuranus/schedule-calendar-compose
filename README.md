@@ -92,7 +92,7 @@ ScheduleCalendar(
 ``` kotlin
 ScheduleCalendar(
         schedules = schedules,
-        calendarFormat = ScheduleCalendarDefaults.format.copy(
+        calendarFormat = ScheduleCalendarDefaults.formats().copy(
             monthHeaderFormat = "MMMM YYYY"
         )
     )
