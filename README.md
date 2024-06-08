@@ -85,6 +85,7 @@ ScheduleCalendar(
 
 ---
 ### DarkMode
+- 스케줄의 컬러는 Light 버전으로 설정하며 자동으로 Dark 모드로 변경된다. 
 <img src="https://github.com/uuranus/schedule-calendar-compose/assets/72340294/9b2d03bf-6906-404b-b3b8-7355cedf7147" alt="다크 모드 first" width="300" />
 
 ---
