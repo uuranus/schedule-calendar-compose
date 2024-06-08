@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.uuranus.schedule.calendar.compose.ui.theme.Blue
+import com.uuranus.schedule.calendar.compose.ui.theme.DarkBlue
+import com.uuranus.schedule.calendar.compose.ui.theme.DarkRed
 import com.uuranus.schedule.calendar.compose.ui.theme.Green
 import com.uuranus.schedule.calendar.compose.ui.theme.Orange
 import com.uuranus.schedule.calendar.compose.ui.theme.Purple
@@ -39,7 +41,7 @@ fun Calendar() {
     val date2 = ScheduleDate.create(2024, 6, 12)
     val date3 = ScheduleDate.create(2024, 6, 3)
     val date4 = ScheduleDate.create(2024, 6, 24)
-    val date5 = ScheduleDate.create(2024, 6, 15)
+    val date5 = ScheduleDate.create(2024, 6, 14)
 
     // Create ScheduleInfo objects
     val info1 = ScheduleInfo(
@@ -118,13 +120,9 @@ fun Calendar() {
     )
 
     ScheduleCalendar(
-        modifier = Modifier,
-        isMondayFirst = true,
-        initialDate = ScheduleDate.create(2024, 6, 2),
         schedules = schedules,
-        onDayClick = {
-        },
-        onPageChanged = {
-        }
+        calendarFormat = ScheduleCalendarDefaults.formats().copy(
+            monthHeaderFormat = "YYYY년 MMMM"
+        )
     )
 }

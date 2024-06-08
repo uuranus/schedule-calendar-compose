@@ -1,22 +1,18 @@
 package com.uuranus.schedule.calendar.compose
 
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
 import java.text.DateFormatSymbols
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-internal fun getYearMonthHeader(format: String, dateInfo: ScheduleDate): String {
-    return if (format.contains("%s")) {
-        String.format(format, getSystemMonthNames(dateInfo.month), dateInfo.year)
-    } else {
-        String.format(format, dateInfo.year, dateInfo.month)
-    }
+internal fun getYearMonthHeader(format: String, scheduleDate: ScheduleDate): String {
 
+    val monthYearFormat = SimpleDateFormat(format, Locale.getDefault())
+
+    return monthYearFormat.format(scheduleDate.getTime())
 }
 
-
 internal fun getNumberOfDaysInMonth(year: Int, month: Int): Int {
-    println("!!!")
     val calendar = Calendar.getInstance()
     calendar.set(Calendar.YEAR, year)
     calendar.set(Calendar.MONTH, month - 1) // Calendar 클래스는 0부터 시작
@@ -46,8 +42,7 @@ internal fun getNextDayOfWeek(year: Int, month: Int, isMondayFirst: Boolean): In
     return 0
 }
 
-
-fun getSystemDayOfWeekNames(): List<String> {
+internal fun getSystemDayOfWeekNames(): List<String> {
     val symbols = DateFormatSymbols.getInstance()
     val shortWeekDays = symbols.shortWeekdays.toList().filter { it.isNotEmpty() }
 
@@ -57,10 +52,4 @@ fun getSystemDayOfWeekNames(): List<String> {
         shortWeekDays.first()
     )
 
-}
-
-
-private fun getSystemMonthNames(month: Int): String {
-    val symbols = DateFormatSymbols.getInstance()
-    return symbols.months[month]
 }

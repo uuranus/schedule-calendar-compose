@@ -7,6 +7,7 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import java.util.Calendar
+import java.util.Date
 
 @Composable
 internal fun rememberCurrentDate(currentDate: ScheduleDate): MutableState<ScheduleDate> {
@@ -86,6 +87,8 @@ class ScheduleDate private constructor(
     override fun toString(): String {
         return "ScheduleDate(year=$year, month=$month, date=$date)"
     }
+
+    fun getTime(): Date = calendar.time
 
     fun addMonth(monthNum: Int): ScheduleDate {
         val newCalendar = calendar.clone() as Calendar

@@ -44,7 +44,7 @@ fun <T> ScheduleCalendar(
     onPageChanged: (ScheduleDate) -> Unit = {},
     calendarTypography: ScheduleCalendarTypography = ScheduleCalendarDefaults.typography,
     calendarColors: ScheduleCalendarColors = ScheduleCalendarDefaults.colors(),
-    calendarFormat: ScheduleCalendarFormat = ScheduleCalendarDefaults.format,
+    calendarFormat: ScheduleCalendarFormat = ScheduleCalendarDefaults.formats(),
 ) {
 
     var currentDate by rememberCurrentDate(initialDate)
@@ -330,6 +330,7 @@ internal fun EmptyScheduleCalendarDate(
 ) {
     val dividerColor =
         ScheduleCalendarDefaults.colors().horizontalDividerColor
+
     Column(
         modifier = modifier
             .height(100.dp)

@@ -103,8 +103,9 @@ object ScheduleCalendarDefaults {
         )
     )
 
-    val format = ScheduleCalendarFormat(
-        monthHeaderFormat = "%04d년 %d월",
+    @Composable
+    fun formats() = ScheduleCalendarFormat(
+        monthHeaderFormat = "MMMM YYYY",
         dayOfWeeks = getSystemDayOfWeekNames(),
     )
 }
