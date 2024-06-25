@@ -25,7 +25,7 @@ dependencies {
 
 # Usage
 
-## 데이터 추가
+## Adding Data
 ``` kotlin
 ScheduleCalendar(
         schedules = mapOf(
@@ -43,14 +43,15 @@ ScheduleCalendar(
     )
 ```
 
-- 데이터 구조는 다음과 같이 생겼다.
-- 제너릭을 통해 더 자세한 스케줄 정보를 담고 있는 클래스를 설정해줄 수 있다.
+- The data structure looks like this.
+- You can set a class that contains more detailed schedule information through generics.
+
 <img src="https://github.com/uuranus/schedule-calendar-compose/assets/72340294/1652fccd-2417-4d3f-8b55-6d6e8d093f63" alt="스케줄 데이터 구조" width="600" />
 
-## 날짜 커스터마이징
+## Customizing the Date
 
 ### Default
--  월요일부터 시작, 주말 색깔 구분이 없다.
+-  Starts on Monday, with no distinction in color for weekends.
 <img src="https://github.com/uuranus/schedule-calendar-compose/assets/72340294/caa063c8-f772-42df-8b4b-77f4a302ab0a" alt="기본값 스크린샷" width="300" />
 
 ---
@@ -85,11 +86,12 @@ ScheduleCalendar(
 
 ---
 ### DarkMode
-- 스케줄의 컬러는 Light 버전으로 설정하며 자동으로 Dark 모드로 변경된다. 
+- The color of the schedule is set to the Light version and automatically changes to Dark mode.
 <img src="https://github.com/uuranus/schedule-calendar-compose/assets/72340294/9b2d03bf-6906-404b-b3b8-7355cedf7147" alt="다크 모드 first" width="300" />
 
 ---
 ### YearMonth Formatting
+- the names of the days and months to reflect the system's language and you can modify the format of the year and month.
 ``` kotlin
 ScheduleCalendar(
         schedules = schedules,
