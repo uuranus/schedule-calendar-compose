@@ -1,7 +1,5 @@
 # Schedule Calendar
-
-<img src="https://github.com/uuranus/schedule-calendar-compose/assets/72340294/caa063c8-f772-42df-8b4b-77f4a302ab0a" alt="기본값 스크린샷" width="300" />
-<img src="https://github.com/uuranus/schedule-calendar-compose/assets/72340294/9b2d03bf-6906-404b-b3b8-7355cedf7147" alt="다크 모드 first" width="300" />
+![schedule-calendar](https://github.com/uuranus/schedule-calendar-compose/assets/72340294/019869d7-165a-4741-b417-16ecf2ffd50b)
 
 
 # Download
