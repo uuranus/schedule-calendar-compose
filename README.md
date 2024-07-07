@@ -1,6 +1,5 @@
 # Schedule Calendar
-![schedule-calendar](https://github.com/uuranus/schedule-calendar-compose/assets/72340294/019869d7-165a-4741-b417-16ecf2ffd50b)
-
+![schedule-calendar](https://github.com/uuranus/schedule-calendar-compose/assets/72340294/87a51698-fbd8-41a7-a425-5bb67952b01f)
 
 # Download
 1. Add it in your root build.gradle
